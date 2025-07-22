@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney, Chelsea Helion" />
+
+<meta name="date" content="2025-07-19" />
+
+<title>CA Step 3 Summarize Dyads</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">CA Step 3 Summarize Dyads</h1>
+<h3 class="subtitle">summarize_dyads()</h3>
+<h4 class="author">Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney,
+Chelsea Helion</h4>
+<h4 class="date">July 19, 2025</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#summarize_dyads" id="toc-summarize_dyads">summarize_dyads()</a></li>
+</ul>
+</div>
+
+<div id="summarize_dyads" class="section level2">
+<h2>summarize_dyads()</h2>
+<p>This is the final step where <code>ConversationAlign</code> will
+compute summary statistics including main effects and alignment
+statistics for the vectorized dataframe you produced using
+<code>prep_dyads()</code>. Users have several options for how to output
+their data, and these choices should be guided by your analysis
+strategy. For example, a linear mixed effects approach might involve
+modeling the rise and fall of values across turns. In contrast, a
+standard ANOVA would work on grouped summary data.</p>
+<ul>
+<li>Main effects for each dimension of interest aggregated by
+Conversation (Event_ID) and Person (Participant_ID). For example, main
+effects of concreteness would involve aggregated means of all the
+concreteness values for words produced by Mary vs words produced by Dave
+in an individual conversation.</li>
+<li>dAUC_raw: difference area under the curve reflecting the difference
+between interlocutors at each turn on each dimension uncorrected for
+conversation length. For example, if Mary’s concreteness at Exchange 1
+was 8 (on a scale of 0-9), and Dave’s concreteness on Exchange 1 was 4,
+the difference between Mary and Dave in this one-turn conversation would
+be 4. dAUC reflects area across all turns estimated using the
+trapezoidal rule.</li>
+<li>dAUC_scaled100: normalized AUC value to 100 turns using proportional
+scaling. e.g., (Observed AUC/Turns Raw) = (Normalized AUC)/100).</li>
+<li>Lead_Corr2: Pearson or Spearman lagged correlation reflecting
+turn-by-turn covariance across partners for each specified
+dimension</li>
+<li>Lag_Corr2: Lead correlation</li>
+<li>Who_Talked_First: Interlocutor who started the conversation (needed
+for interepreting lead/lag stats)</li>
+</ul>
+<p><span style="color: darkred;">Arguments to
+<code>summarize_dyads()</code> include:</span> <br> 1)
+<strong>df_prep</strong>= dataframe created by
+<code>prep_dyads()</code>function <br> 2) <strong>custom_lags</strong>=
+default is NULL, any additional user-specified lagged correlations. will
+automatically produce lead of 2 turns, immediate response, lag of 2
+turns for each dimension of interest. <br> 3)
+<strong>sumdat_only</strong>= boolean default is TRUE, produces grouped
+summary dataframe with averages by conversation and participant for each
+alignment dimension, FALSE retrains all of the original rows, filling
+down empty rows of summary statistics for the conversation (e.g., AUC)
+<br> 4) <strong>corr_type</strong>= default=‘Pearson’, other option
+‘Spearman’ for computing turn-by-turn correlations across interlocutors
+for each dimension of interest.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>MarySumDat <span class="ot">&lt;-</span> <span class="fu">summarize_dyads</span>(<span class="at">df_prep =</span> NurseryRhymes_Prepped, <span class="at">custom_lags=</span><span class="cn">NULL</span>, <span class="at">sumdat_only =</span> <span class="cn">TRUE</span>, <span class="at">corr_type=</span><span class="st">&#39;Pearson&#39;</span>) </span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">colnames</span>(MarySumDat)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Event_ID&quot;           &quot;Participant_ID&quot;     &quot;Dimension&quot;         </span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Dimension_Mean&quot;     &quot;AUC_raw&quot;            &quot;AUC_scaled100&quot;     </span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Talked_First&quot;       &quot;TurnCorr_Lead2&quot;     &quot;TurnCorr_Immediate&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; [10] &quot;TurnCorr_Lag2&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(MarySumDat, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;simple&quot;</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Event_ID</th>
+<th align="left">Participant_ID</th>
+<th align="left">Dimension</th>
+<th align="right">Dimension_Mean</th>
+<th align="right">AUC_raw</th>
+<th align="right">AUC_scaled100</th>
+<th align="left">Talked_First</th>
+<th align="right">TurnCorr_Lead2</th>
+<th align="right">TurnCorr_Immediate</th>
+<th align="right">TurnCorr_Lag2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ItsySpider</td>
+<td align="left">Maya</td>
+<td align="left">emo_anger</td>
+<td align="right">0.001</td>
+<td align="right">0.783</td>
+<td align="right">1.630</td>
+<td align="left">Yin</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="left">ItsySpider</td>
+<td align="left">Yin</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.033</td>
+<td align="right">0.783</td>
+<td align="right">1.630</td>
+<td align="left">Yin</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">JackJill</td>
+<td align="left">Ana</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.066</td>
+<td align="right">3.729</td>
+<td align="right">4.662</td>
+<td align="left">Franklin</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">JackJill</td>
+<td align="left">Franklin</td>
+<td align="left">emo_anger</td>
+<td align="right">0.030</td>
+<td align="right">3.729</td>
+<td align="right">4.662</td>
+<td align="left">Franklin</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">LittleLamb</td>
+<td align="left">Dave</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.001</td>
+<td align="right">1.486</td>
+<td align="right">1.486</td>
+<td align="left">Mary</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">LittleLamb</td>
+<td align="left">Mary</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.031</td>
+<td align="right">1.486</td>
+<td align="right">1.486</td>
+<td align="left">Mary</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney, Chelsea Helion" />
+
+<meta name="date" content="2025-07-19" />
+
+<title>CA Step 1 Read_Dyads</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">CA Step 1 Read_Dyads</h1>
+<h3 class="subtitle">Read and Format Data for ConversationAlign</h3>
+<h4 class="author">Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney,
+Chelsea Helion</h4>
+<h4 class="date">2025-07-19</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#reading-data-into-r-for-conversationalign" id="toc-reading-data-into-r-for-conversationalign">Reading data into R
+for ConversationAlign</a></li>
+<li><a href="#prepping-your-data-for-import" id="toc-prepping-your-data-for-import">Prepping your data for import</a>
+<ul>
+<li><a href="#read_dyads" id="toc-read_dyads"><code>read_dyads()</code></a></li>
+<li><a href="#read_1file" id="toc-read_1file"><code>read_1file()</code></a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="reading-data-into-r-for-conversationalign" class="section level1">
+<h1>Reading data into R for ConversationAlign</h1>
+<p>Half the battle with R is getting your data imported and formatted.
+This is especially true for string data and working with text.
+<code>ConversationAlign</code> uses a series of sequential functions to
+import, clean, and format your raw data. You <strong>MUST</strong> run
+each of these functions. They append important variable names and
+automatically reshape your data. <br></p>
+</div>
+<div id="prepping-your-data-for-import" class="section level1">
+<h1>Prepping your data for import</h1>
+<ul>
+<li><code>ConversationAlign</code> works <strong>ONLY</strong> on dyadic
+(i.e., two person) conversation transcripts.</li>
+<li>Each transcript must nominally contain two colummns, one column
+should delineate the interlocutor (person who produced the text), and
+another column should contain the text itself.</li>
+<li><code>ConversationAlign</code> contains an import function called
+<code>read_dyads()</code> that will scan a target folder for text
+samples.</li>
+<li><code>read_dyads()</code> will import all of your transcripts into R
+and concatenate them into a single dataframe.</li>
+<li><code>read_dyads()</code> will append each transcript’s filename as
+a unique identifier for that conversation. This is SUPER important to
+remember when analyzing your data.</li>
+<li>Store each of your individual conversation transcripts
+(<code>.csv</code>, <code>.txt</code>, <code>.ai</code>) that you wish
+to concatenate into a corpus in a folder. <code>ConversationAlign</code>
+will search for a folder called <code>my_transcripts</code> in the same
+directory as your script. However, feel free to name your folder
+anything you like. You can specify a custom path as an argument to
+read_dyads()</li>
+<li>Each transcript must nominally contain two columns of data
+(Participant and Text). All other columns (e.g., meta-data) will be
+retained.</li>
+</ul>
+<div id="read_dyads" class="section level2">
+<h2><code>read_dyads()</code></h2>
+<p>Here are some exampples of <code>read_dyads()</code> in action. There
+is only one argument to <code>read_dyads()</code>, and that is
+<code>my_path</code>. This is for supplying a quoted directory path to
+the folder where your transcripts live. Remember to treat this folder as
+a staging area! Once you are finished with a set of transcripts and
+don’t want them read into <code>ConversationAlign</code> move them out
+of the folder, or specify a new folder. Language data tends to
+proliferate quickly, and it is easy to forget what you are doing. Be a
+CAREFUL secretary, and record your steps.</p>
+<p><span style="color: darkred;">Arguments to <code>read_dyads</code>
+include:</span> <br> 1. <strong>my_path</strong>: default is
+‘my_transcripts’, change path to your folder name<br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#will search for folder &#39;my_transcripts&#39; in your current directory</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>MyConvos <span class="ot">&lt;-</span> <span class="fu">read_dyads</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#will scan custom folder called &#39;MyStuff&#39; in your current directory, concatenating all files in that folder into a single dataframe</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>MyConvos2 <span class="ot">&lt;-</span> <span class="fu">read_dyads</span>(<span class="at">my_path=</span><span class="st">&#39;/MyStuff&#39;</span>)</span></code></pre></div>
+</div>
+<div id="read_1file" class="section level2">
+<h2><code>read_1file()</code></h2>
+<ul>
+<li>Read single transcript already in R environment. We will use
+<code>read_1file()</code> to prep the Marc Maron and Terry Gross
+transcript. Look at how the column headers have changed and the object
+name (MaronGross_2013) is now the Event_ID (a document identifier),
+<br></li>
+</ul>
+<p><span style="color: darkred;">Arguments to <code>read_1file</code>
+include:</span> <br> 1. <strong>my_dat</strong>: object already in your
+R environment containing text and speaker information.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>MaryLittleLamb <span class="ot">&lt;-</span> <span class="fu">read_1file</span>(MaronGross_2013)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#print first ten rows of header</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(MaronGross_2013, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;pipe&quot;</span>)</span></code></pre></div>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="95%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">speaker</th>
+<th align="left">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">I’m a little nervous but I’ve prepared I’ve written
+things on a piece of paper</td>
+</tr>
+<tr class="even">
+<td align="left">MARON</td>
+<td align="left">I don’t know how you prepare I could ask you that -
+maybe I will But this is how I prepare - I panic</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">For a while</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">Yeah</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">And then I scramble and then I type some things up and
+then I handwrite things that are hard to read So I can you know
+challenge myself on that level during the interview</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">Being self-defeating is always a good part of
+preparation</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">What is?</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">Being self-defeating</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">Yes</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">Self-sabotage</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">Yes</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">Key</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">Right so you do that?</td>
+</tr>
+<tr class="even">
+<td align="left">GROSS</td>
+<td align="left">I sometimes do that</td>
+</tr>
+<tr class="odd">
+<td align="left">MARON</td>
+<td align="left">How often?</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
