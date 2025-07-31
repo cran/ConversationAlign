@@ -2,7 +2,7 @@ Package: ConversationAlign
 Type: Package
 Title: Process Text and Compute Linguistic Alignment in Conversation
         Transcripts
-Version: 0.2.0
+Version: 0.3.2
 Authors@R: c(
      person("Jamie", "Reilly", 
            role = c("aut", "cre"), 
@@ -15,7 +15,7 @@ Authors@R: c(
     person("Gus", "Cooney", role = "ctb"))
 Maintainer: Jamie Reilly <jamie_reilly@temple.edu>
 Description: Imports conversation transcripts into R, concatenates them into a single dataframe appending event identifiers, cleans and formats the text, then yokes user-specified psycholinguistic database values to each word.  'ConversationAlign' then computes alignment indices between two interlocutors across each transcript for >40 possible semantic, lexical, and affective dimensions. In addition to alignment, 'ConversationAlign' also produces a table of analytics (e.g., token count, type-token-ratio) in a summary table describing your particular text corpus.
-License: GPL (>= 3)
+License: LGPL (>= 3)
 Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports: DescTools, dplyr (>= 0.4.3), httr, magrittr, purrr, rlang,
@@ -32,7 +32,7 @@ Collate: 'ConversationAlign-package.R' 'compute_auc.R'
         'replacements_25.R' 'summarize_dyads.R' 'utils.R' 'zzz.R'
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-07-19 15:19:47 UTC; Jamie
+Packaged: 2025-07-30 23:44:56 UTC; Jamie
 Author: Jamie Reilly [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-0891-438X>),
   Virginia Ulichney [aut],
@@ -41,4 +41,4 @@ Author: Jamie Reilly [aut, cre] (ORCID:
   Chelsea Helion [ctb],
   Gus Cooney [ctb]
 Repository: CRAN
-Date/Publication: 2025-07-22 10:10:16 UTC
+Date/Publication: 2025-07-31 00:00:02 UTC

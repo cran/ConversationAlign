@@ -12,9 +12,9 @@
 
 <meta name="author" content="Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney, Chelsea Helion" />
 
-<meta name="date" content="2025-07-19" />
+<meta name="date" content="2025-07-30" />
 
-<title>CA Step 1 Read_Dyads</title>
+<title>ConversationAlign_Step4_Analytics</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -339,178 +339,140 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">CA Step 1 Read_Dyads</h1>
-<h3 class="subtitle">Read and Format Data for ConversationAlign</h3>
+<h1 class="title toc-ignore">ConversationAlign_Step4_Analytics</h1>
+<h3 class="subtitle">corpus_analytics()</h3>
 <h4 class="author">Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney,
 Chelsea Helion</h4>
-<h4 class="date">2025-07-19</h4>
+<h4 class="date">July 30, 2025</h4>
 
 
-<div id="TOC">
-<ul>
-<li><a href="#reading-data-into-r-for-conversationalign" id="toc-reading-data-into-r-for-conversationalign">Reading data into R
-for ConversationAlign</a></li>
-<li><a href="#prepping-your-data-for-import" id="toc-prepping-your-data-for-import">Prepping your data for import</a>
-<ul>
-<li><a href="#read_dyads" id="toc-read_dyads"><code>read_dyads()</code></a></li>
-<li><a href="#read_1file" id="toc-read_1file"><code>read_1file()</code></a></li>
-</ul></li>
-</ul>
-</div>
 
-<div id="reading-data-into-r-for-conversationalign" class="section level1">
-<h1>Reading data into R for ConversationAlign</h1>
-<p>Half the battle with R is getting your data imported and formatted.
-This is especially true for string data and working with text.
-<code>ConversationAlign</code> uses a series of sequential functions to
-import, clean, and format your raw data. You <strong>MUST</strong> run
-each of these functions. They append important variable names and
-automatically reshape your data. <br></p>
-</div>
-<div id="prepping-your-data-for-import" class="section level1">
-<h1>Prepping your data for import</h1>
-<ul>
-<li><code>ConversationAlign</code> works <strong>ONLY</strong> on dyadic
-(i.e., two person) conversation transcripts.</li>
-<li>Each transcript must nominally contain two colummns, one column
-should delineate the interlocutor (person who produced the text), and
-another column should contain the text itself.</li>
-<li><code>ConversationAlign</code> contains an import function called
-<code>read_dyads()</code> that will scan a target folder for text
-samples.</li>
-<li><code>read_dyads()</code> will import all of your transcripts into R
-and concatenate them into a single dataframe.</li>
-<li><code>read_dyads()</code> will append each transcript’s filename as
-a unique identifier for that conversation. This is SUPER important to
-remember when analyzing your data.</li>
-<li>Store each of your individual conversation transcripts
-(<code>.csv</code>, <code>.txt</code>, <code>.ai</code>) that you wish
-to concatenate into a corpus in a folder. <code>ConversationAlign</code>
-will search for a folder called <code>my_transcripts</code> in the same
-directory as your script. However, feel free to name your folder
-anything you like. You can specify a custom path as an argument to
-read_dyads()</li>
-<li>Each transcript must nominally contain two columns of data
-(Participant and Text). All other columns (e.g., meta-data) will be
-retained.</li>
-</ul>
-<div id="read_dyads" class="section level2">
-<h2><code>read_dyads()</code></h2>
-<p>Here are some exampples of <code>read_dyads()</code> in action. There
-is only one argument to <code>read_dyads()</code>, and that is
-<code>my_path</code>. This is for supplying a quoted directory path to
-the folder where your transcripts live. Remember to treat this folder as
-a staging area! Once you are finished with a set of transcripts and
-don’t want them read into <code>ConversationAlign</code> move them out
-of the folder, or specify a new folder. Language data tends to
-proliferate quickly, and it is easy to forget what you are doing. Be a
-CAREFUL secretary, and record your steps.</p>
-<p><span style="color: darkred;">Arguments to <code>read_dyads</code>
-include:</span> <br> 1. <strong>my_path</strong>: default is
-‘my_transcripts’, change path to your folder name<br></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#will search for folder &#39;my_transcripts&#39; in your current directory</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>MyConvos <span class="ot">&lt;-</span> <span class="fu">read_dyads</span>()</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#will scan custom folder called &#39;MyStuff&#39; in your current directory, concatenating all files in that folder into a single dataframe</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>MyConvos2 <span class="ot">&lt;-</span> <span class="fu">read_dyads</span>(<span class="at">my_path=</span><span class="st">&#39;/MyStuff&#39;</span>)</span></code></pre></div>
-</div>
-<div id="read_1file" class="section level2">
-<h2><code>read_1file()</code></h2>
-<ul>
-<li>Read single transcript already in R environment. We will use
-<code>read_1file()</code> to prep the Marc Maron and Terry Gross
-transcript. Look at how the column headers have changed and the object
-name (MaronGross_2013) is now the Event_ID (a document identifier),
-<br></li>
-</ul>
-<p><span style="color: darkred;">Arguments to <code>read_1file</code>
-include:</span> <br> 1. <strong>my_dat</strong>: object already in your
-R environment containing text and speaker information.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>MaryLittleLamb <span class="ot">&lt;-</span> <span class="fu">read_1file</span>(MaronGross_2013)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#print first ten rows of header</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(MaronGross_2013, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;pipe&quot;</span>)</span></code></pre></div>
+<p>This is a helpful addition to <code>ConversationAlign</code> that
+will generate a variety of corpus analytics (e.g., word count,
+type-token-ratio) for your conversation corpus. The output is in a
+summary table that is readily exportable to to the specific journal
+format of your choice using any number of packages such as
+<code>flextable</code> or <code>tinytable</code>. <br></p>
+<p>Generate your corpus analytics on the dataframe you created with
+<code>prep_dyads</code>.</p>
+<p><span style="color: darkred;">Arguments to
+<code>corpus_analytics</code> include:</span> <br> 1)
+<strong>dat_prep</strong>= dataframe created by
+<code>prep_dyads()</code>function <br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>NurseryRhymes_Analytics <span class="ot">&lt;-</span>  <span class="fu">corpus_analytics</span>(<span class="at">dat_prep=</span>NurseryRhymes_Prepped)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(NurseryRhymes_Analytics, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;simple&quot;</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
-<colgroup>
-<col width="4%" />
-<col width="95%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="left">speaker</th>
-<th align="left">text</th>
+<th align="left">measure</th>
+<th align="right">mean</th>
+<th align="right">stdev</th>
+<th align="right">min</th>
+<th align="right">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">I’m a little nervous but I’ve prepared I’ve written
-things on a piece of paper</td>
+<td align="left">total number of conversations</td>
+<td align="right">3.00</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">MARON</td>
-<td align="left">I don’t know how you prepare I could ask you that -
-maybe I will But this is how I prepare - I panic</td>
+<td align="left">token count all conversations (raw)</td>
+<td align="right">1506.00</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">For a while</td>
+<td align="left">token count all conversations (post-cleaning)</td>
+<td align="right">1032.00</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">Yeah</td>
+<td align="left">exchange count (by conversation)</td>
+<td align="right">38.00</td>
+<td align="right">13.11</td>
+<td align="right">24.00</td>
+<td align="right">50.00</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">And then I scramble and then I type some things up and
-then I handwrite things that are hard to read So I can you know
-challenge myself on that level during the interview</td>
+<td align="left">word count raw (by conversation)</td>
+<td align="right">502.00</td>
+<td align="right">47.03</td>
+<td align="right">456.00</td>
+<td align="right">550.00</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">Being self-defeating is always a good part of
-preparation</td>
+<td align="left">word count clean (by conversation)</td>
+<td align="right">344.00</td>
+<td align="right">48.66</td>
+<td align="right">312.00</td>
+<td align="right">400.00</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">What is?</td>
+<td align="left">cleaning retention rate (by conversation)</td>
+<td align="right">0.68</td>
+<td align="right">0.04</td>
+<td align="right">0.64</td>
+<td align="right">0.73</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">Being self-defeating</td>
+<td align="left">morphemes-per-word (by conversation)</td>
+<td align="right">1.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">Yes</td>
+<td align="left">letters-per-word (by conversation)</td>
+<td align="right">4.22</td>
+<td align="right">0.14</td>
+<td align="right">4.12</td>
+<td align="right">4.38</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">Self-sabotage</td>
+<td align="left">lexical frequency lg10 (by conversation)</td>
+<td align="right">3.67</td>
+<td align="right">0.18</td>
+<td align="right">3.48</td>
+<td align="right">3.84</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">Yes</td>
+<td align="left">words-per-turn raw (by conversation)</td>
+<td align="right">7.08</td>
+<td align="right">2.13</td>
+<td align="right">5.50</td>
+<td align="right">9.50</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">Key</td>
+<td align="left">words-per-turn clean (by conversation)</td>
+<td align="right">4.83</td>
+<td align="right">1.44</td>
+<td align="right">4.00</td>
+<td align="right">6.50</td>
 </tr>
 <tr class="odd">
-<td align="left">MARON</td>
-<td align="left">Right so you do that?</td>
+<td align="left">TTR raw (by conversation)</td>
+<td align="right">0.03</td>
+<td align="right">0.01</td>
+<td align="right">0.02</td>
+<td align="right">0.04</td>
 </tr>
 <tr class="even">
-<td align="left">GROSS</td>
-<td align="left">I sometimes do that</td>
-</tr>
-<tr class="odd">
-<td align="left">MARON</td>
-<td align="left">How often?</td>
+<td align="left">TTR clean (by conversation)</td>
+<td align="right">0.04</td>
+<td align="right">0.02</td>
+<td align="right">0.02</td>
+<td align="right">0.05</td>
 </tr>
 </tbody>
 </table>
-<p><br></p>
-</div>
-</div>
+<p>`</p>
 
 
 
