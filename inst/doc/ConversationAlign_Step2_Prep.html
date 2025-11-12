@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney, Chelsea Helion" />
 
-<meta name="date" content="2025-07-30" />
+<meta name="date" content="2025-11-12" />
 
 <title>ConversationAlign_Step2_Prep</title>
 
@@ -343,7 +343,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h3 class="subtitle">prep_dyads()</h3>
 <h4 class="author">Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney,
 Chelsea Helion</h4>
-<h4 class="date">July 30, 2025</h4>
+<h4 class="date">November 12, 2025</h4>
 
 
 <div id="TOC">
@@ -438,7 +438,10 @@ to its dictionary form, default is <code>lemmatize=TRUE</code> <br> 4)
 <strong>which_stoplist</strong>= quoted argument specifying stopword
 list, options include <code>none</code>, <code>MIT_stops</code>,
 <code>SMART</code>, <code>CA_OriginalStops</code>, or
-<code>Temple_stops25</code>. Default is <code>Temple_stops25</code></p>
+<code>Temple_stops25</code>. Default is <code>Temple_stops25</code> <br>
+5) <strong>remove_backchannel</strong>= logical, should turns comprised
+entirely of stopwords be removed or preserved as NAs. NAs are filled in
+future steps. Defaults is <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#Example of running the function</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>NurseryRhymes_Prepped <span class="ot">&lt;-</span> <span class="fu">prep_dyads</span>(<span class="at">dat_read=</span>NurseryRhymes, <span class="at">lemmatize=</span><span class="cn">TRUE</span>, <span class="at">omit_stops=</span>T, <span class="at">which_stoplist=</span><span class="st">&quot;Temple_stops25&quot;</span>)</span></code></pre></div>
 <div id="example-of-a-prepped-dataset" class="section level2">

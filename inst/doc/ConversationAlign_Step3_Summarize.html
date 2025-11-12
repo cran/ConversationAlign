@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney, Chelsea Helion" />
 
-<meta name="date" content="2025-07-30" />
+<meta name="date" content="2025-11-12" />
 
 <title>ConversationAlign_Step3_Summarize</title>
 
@@ -343,9 +343,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h3 class="subtitle">summarize_dyads()</h3>
 <h4 class="author">Jamie Reilly, Ben Sacks, Ginny Ulichney, Gus Cooney,
 Chelsea Helion</h4>
-<h4 class="date">July 30, 2025</h4>
+<h4 class="date">November 12, 2025</h4>
 
 
+<div id="TOC">
+<ul>
+<li><a href="#generating-sham-conversations" id="toc-generating-sham-conversations">Generating sham
+conversations</a></li>
+</ul>
+</div>
 
 <p>This is the final step where <code>ConversationAlign</code> will
 compute summary statistics including main effects and alignment
@@ -393,21 +399,23 @@ down empty rows of summary statistics for the conversation (e.g., AUC)
 for each dimension of interest.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>MarySumDat <span class="ot">&lt;-</span> <span class="fu">summarize_dyads</span>(<span class="at">df_prep =</span> NurseryRhymes_Prepped, <span class="at">custom_lags=</span><span class="cn">NULL</span>, <span class="at">sumdat_only =</span> <span class="cn">TRUE</span>, <span class="at">corr_type=</span><span class="st">&#39;Pearson&#39;</span>) </span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">colnames</span>(MarySumDat)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Event_ID&quot;           &quot;Participant_ID&quot;     &quot;Dimension&quot;         </span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Dimension_Mean&quot;     &quot;AUC_raw&quot;            &quot;AUC_scaled100&quot;     </span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Talked_First&quot;       &quot;TurnCorr_Lead2&quot;     &quot;TurnCorr_Immediate&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; [10] &quot;TurnCorr_Lag2&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Event_ID&quot;               &quot;Participant_ID&quot;         &quot;Talked_First&quot;          </span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Dimension&quot;              &quot;Dimension_Mean&quot;         &quot;AUC_raw_Immediate&quot;     </span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;AUC_scaled50_Immediate&quot; &quot;AUC_raw_Lag1&quot;           &quot;AUC_scaled50_Lag1&quot;     </span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; [10] &quot;TurnCorr_Lead2&quot;         &quot;TurnCorr_Immediate&quot;     &quot;TurnCorr_Lag2&quot;</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(MarySumDat, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;simple&quot;</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Event_ID</th>
 <th align="left">Participant_ID</th>
+<th align="left">Talked_First</th>
 <th align="left">Dimension</th>
 <th align="right">Dimension_Mean</th>
-<th align="right">AUC_raw</th>
-<th align="right">AUC_scaled100</th>
-<th align="left">Talked_First</th>
+<th align="right">AUC_raw_Immediate</th>
+<th align="right">AUC_scaled50_Immediate</th>
+<th align="right">AUC_raw_Lag1</th>
+<th align="right">AUC_scaled50_Lag1</th>
 <th align="right">TurnCorr_Lead2</th>
 <th align="right">TurnCorr_Immediate</th>
 <th align="right">TurnCorr_Lag2</th>
@@ -417,11 +425,13 @@ for each dimension of interest.</p>
 <tr class="odd">
 <td align="left">ItsySpider</td>
 <td align="left">Maya</td>
+<td align="left">Yin</td>
 <td align="left">emo_anger</td>
 <td align="right">0.001</td>
 <td align="right">0.783</td>
 <td align="right">1.630</td>
-<td align="left">Yin</td>
+<td align="right">0.749</td>
+<td align="right">1.560</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
@@ -429,11 +439,13 @@ for each dimension of interest.</p>
 <tr class="even">
 <td align="left">ItsySpider</td>
 <td align="left">Yin</td>
+<td align="left">Yin</td>
 <td align="left">emo_anger</td>
 <td align="right">-0.033</td>
 <td align="right">0.783</td>
 <td align="right">1.630</td>
-<td align="left">Yin</td>
+<td align="right">0.749</td>
+<td align="right">1.560</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
@@ -441,11 +453,13 @@ for each dimension of interest.</p>
 <tr class="odd">
 <td align="left">JackJill</td>
 <td align="left">Ana</td>
+<td align="left">Franklin</td>
 <td align="left">emo_anger</td>
 <td align="right">-0.066</td>
 <td align="right">3.729</td>
 <td align="right">4.662</td>
-<td align="left">Franklin</td>
+<td align="right">3.634</td>
+<td align="right">4.542</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -453,11 +467,13 @@ for each dimension of interest.</p>
 <tr class="even">
 <td align="left">JackJill</td>
 <td align="left">Franklin</td>
+<td align="left">Franklin</td>
 <td align="left">emo_anger</td>
 <td align="right">0.030</td>
 <td align="right">3.729</td>
 <td align="right">4.662</td>
-<td align="left">Franklin</td>
+<td align="right">3.634</td>
+<td align="right">4.542</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -465,11 +481,13 @@ for each dimension of interest.</p>
 <tr class="odd">
 <td align="left">LittleLamb</td>
 <td align="left">Dave</td>
+<td align="left">Mary</td>
 <td align="left">emo_anger</td>
 <td align="right">-0.001</td>
 <td align="right">1.486</td>
 <td align="right">1.486</td>
-<td align="left">Mary</td>
+<td align="right">1.456</td>
+<td align="right">1.456</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
@@ -477,17 +495,143 @@ for each dimension of interest.</p>
 <tr class="even">
 <td align="left">LittleLamb</td>
 <td align="left">Mary</td>
+<td align="left">Mary</td>
 <td align="left">emo_anger</td>
 <td align="right">-0.031</td>
 <td align="right">1.486</td>
 <td align="right">1.486</td>
-<td align="left">Mary</td>
+<td align="right">1.456</td>
+<td align="right">1.456</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 </tr>
 </tbody>
 </table>
+<div id="generating-sham-conversations" class="section level2">
+<h2>Generating sham conversations</h2>
+<p>Some research questions would benefit from the use of conversations
+that control for some temporal effects. The function
+<code>generate_shams()</code> accepts the output of
+<code>prep_dyads()</code> and returns a data frame in the same structure
+with each interlocutor’s time series randomly shuffled. Since the output
+has the same format as <code>prep_dyads()</code> output, it can easily
+be supplied to <code>summarize_dyads()</code> and compared to the real
+conversations.</p>
+<p><span style="color: darkred;">Arguments to
+<code>generate_shams()</code> include:</span> <br> 1)
+<strong>df_prep</strong>= dataframe created by
+<code>prep_dyads()</code>function <br> 2) <strong>seed</strong>=
+numeric, a number to supply as a seed. This allows for reproducible
+results. <br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>MaryShams <span class="ot">&lt;-</span> <span class="fu">generate_shams</span>(<span class="at">df_prep =</span> NurseryRhymes_Prepped, <span class="at">seed =</span> <span class="dv">10</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>MarySumDatShams <span class="ot">&lt;-</span> <span class="fu">summarize_dyads</span>(<span class="at">df_prep =</span> MaryShams, <span class="at">custom_lags=</span><span class="cn">NULL</span>, <span class="at">sumdat_only =</span> <span class="cn">TRUE</span>, <span class="at">corr_type=</span><span class="st">&#39;Pearson&#39;</span>) </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(MarySumDatShams, <span class="dv">15</span>), <span class="at">format =</span> <span class="st">&quot;simple&quot;</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Event_ID</th>
+<th align="left">Participant_ID</th>
+<th align="left">Talked_First</th>
+<th align="left">Dimension</th>
+<th align="right">Dimension_Mean</th>
+<th align="right">AUC_raw_Immediate</th>
+<th align="right">AUC_scaled50_Immediate</th>
+<th align="right">AUC_raw_Lag1</th>
+<th align="right">AUC_scaled50_Lag1</th>
+<th align="right">TurnCorr_Lead2</th>
+<th align="right">TurnCorr_Immediate</th>
+<th align="right">TurnCorr_Lag2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ItsySpider</td>
+<td align="left">Maya</td>
+<td align="left">Maya</td>
+<td align="left">emo_anger</td>
+<td align="right">0.002</td>
+<td align="right">0.759</td>
+<td align="right">1.580</td>
+<td align="right">0.701</td>
+<td align="right">1.459</td>
+<td align="right">0.100</td>
+<td align="right">-1</td>
+<td align="right">0.100</td>
+</tr>
+<tr class="even">
+<td align="left">ItsySpider</td>
+<td align="left">Yin</td>
+<td align="left">Maya</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.032</td>
+<td align="right">0.759</td>
+<td align="right">1.580</td>
+<td align="right">0.701</td>
+<td align="right">1.459</td>
+<td align="right">0.100</td>
+<td align="right">-1</td>
+<td align="right">0.100</td>
+</tr>
+<tr class="odd">
+<td align="left">JackJill</td>
+<td align="left">Ana</td>
+<td align="left">Ana</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.066</td>
+<td align="right">3.729</td>
+<td align="right">4.662</td>
+<td align="right">3.634</td>
+<td align="right">4.542</td>
+<td align="right">-0.158</td>
+<td align="right">1</td>
+<td align="right">-0.158</td>
+</tr>
+<tr class="even">
+<td align="left">JackJill</td>
+<td align="left">Franklin</td>
+<td align="left">Ana</td>
+<td align="left">emo_anger</td>
+<td align="right">0.030</td>
+<td align="right">3.729</td>
+<td align="right">4.662</td>
+<td align="right">3.634</td>
+<td align="right">4.542</td>
+<td align="right">-0.158</td>
+<td align="right">1</td>
+<td align="right">-0.158</td>
+</tr>
+<tr class="odd">
+<td align="left">LittleLamb</td>
+<td align="left">Dave</td>
+<td align="left">Dave</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.001</td>
+<td align="right">1.486</td>
+<td align="right">1.486</td>
+<td align="right">1.456</td>
+<td align="right">1.456</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">LittleLamb</td>
+<td align="left">Mary</td>
+<td align="left">Dave</td>
+<td align="left">emo_anger</td>
+<td align="right">-0.031</td>
+<td align="right">1.486</td>
+<td align="right">1.486</td>
+<td align="right">1.456</td>
+<td align="right">1.456</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
 
