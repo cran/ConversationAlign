@@ -2,7 +2,7 @@ Package: ConversationAlign
 Type: Package
 Title: Process Text and Compute Linguistic Alignment in Conversation
         Transcripts
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(
      person("Jamie", "Reilly", 
            role = c("aut", "cre"), 
@@ -20,7 +20,7 @@ Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports: DescTools, dplyr (>= 0.4.3), httr, magrittr, purrr, rlang,
         stringi, stringr, textstem, tibble, tidyr, tidyselect, stats,
-        utils, YRmisc, zoo
+        utils, zoo
 Suggests: devtools, knitr, rmarkdown, testthat (>= 3.0.0)
 URL: https://github.com/Reilly-ConceptsCognitionLab/ConversationAlign
 RoxygenNote: 7.3.3
@@ -33,7 +33,7 @@ Collate: 'ConversationAlign-package.R' 'compute_auc.R'
         'utils.R' 'zzz.R'
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-11-12 19:54:02 UTC; Jamie
+Packaged: 2026-04-29 13:17:50 UTC; Jamie
 Author: Jamie Reilly [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-0891-438X>),
   Virginia Ulichney [aut],
@@ -42,4 +42,4 @@ Author: Jamie Reilly [aut, cre] (ORCID:
   Chelsea Helion [ctb],
   Gus Cooney [ctb]
 Repository: CRAN
-Date/Publication: 2025-11-12 23:30:31 UTC
+Date/Publication: 2026-04-29 15:10:25 UTC
